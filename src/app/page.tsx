@@ -4,38 +4,38 @@ import { siteConfig } from "@/lib/site";
 
 const highlights = [
   {
-    value: "5+ years",
-    label: "building fullstack solutions for digital products",
+    value: "5+ Years",
+    label: "commercial full-stack engineering experience",
   },
   {
-    value: "40+",
-    label: "web and BI projects delivered",
+    value: "Remote US",
+    label: "available for full-time contract collaboration",
   },
   {
-    value: "1:1",
-    label: "Power BI mentoring with practical business cases",
+    value: "B2+",
+    label: "Upper-Intermediate English communication",
   },
   {
-    value: "100%",
-    label: "focus on measurable outcomes and team growth",
+    value: "Kyiv",
+    label: "based in Kyiv, Ukraine and working globally",
   },
 ];
 
 const services = [
   {
-    title: "Fullstack Development",
+    title: "React + Node.js Engineering",
     description:
-      "I design and ship fast web applications with Next.js and TypeScript, from prototype to production.",
+      "Production-grade web applications with React, Next.js, Node.js, and TypeScript from architecture to release.",
   },
   {
-    title: "Power BI & Analytics",
+    title: "Power BI Solutions",
     description:
-      "I help teams build transparent KPI systems, decision-ready dashboards, and reporting workflows that stay clear over time.",
+      "Clear KPI systems, practical data models, and dashboards that support fast and informed business decisions.",
   },
   {
-    title: "Training & Enablement",
+    title: "Performance & Accessibility",
     description:
-      "I teach you to work with Power BI effectively, so you can automate analytics with confidence and no data chaos.",
+      "Front-end performance optimization, scalable UI architecture, and accessibility-minded implementation (WCAG).",
   },
 ];
 
@@ -44,26 +44,29 @@ const contacts = [
     label: "Email",
     value: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
-    note: "Best for project requests",
+    note: "Best channel for project inquiries",
   },
   {
-    label: "Phone",
-    value: siteConfig.phone,
-    href: `tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`,
-    note: "Quick call for an intro brief",
-  },
-  {
-    label: "Telegram",
-    value: "@your_handle",
-    href: siteConfig.telegram,
-    note: "Fastest chat response",
+    label: "Location",
+    value: siteConfig.location,
+    href: "https://maps.google.com/?q=Kyiv%2C%20Ukraine",
+    note: "Working remotely with US teams",
   },
   {
     label: "LinkedIn",
-    value: "Professional profile",
+    value: "linkedin.com/in/dmytro-kurhan-40ab4191",
     href: siteConfig.linkedin,
-    note: "Cases and experience in detail",
+    note: "Professional profile and background",
   },
+];
+
+const keySkills = [
+  "React, Next.js, TypeScript, JavaScript",
+  "Node.js, Express, REST API, GraphQL",
+  "Redux Toolkit, RTK Query, Redux-Saga",
+  "Power BI, enterprise analytics, data-driven UI",
+  "Performance optimization and scalable architecture",
+  "Git, CI/CD, Docker, cloud deployment workflows",
 ];
 
 const schemaData = [
@@ -75,20 +78,29 @@ const schemaData = [
     description: siteConfig.description,
     url: siteConfig.siteUrl,
     email: siteConfig.email,
-    telephone: siteConfig.phone,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Kyiv",
+      addressCountry: "UA",
+    },
+    knowsLanguage: [`English ${siteConfig.englishLevel}`],
     knowsAbout: [
-      "Fullstack Development",
+      "Senior Full-Stack Engineering",
+      "React Development",
+      "Node.js Development",
       "Next.js",
       "TypeScript",
       "Power BI",
       "Business Analytics",
+      "Performance Optimization",
+      "Accessibility (WCAG)",
     ],
-    sameAs: [siteConfig.linkedin, siteConfig.github, siteConfig.telegram],
+    sameAs: [siteConfig.linkedin],
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Power BI mentoring and fullstack development",
+    serviceType: "Senior full-stack engineering and Power BI consulting",
     provider: {
       "@type": "Person",
       name: siteConfig.name,
@@ -148,19 +160,20 @@ export default function Home() {
 
       <section className={styles.hero}>
         <article className={styles.heroCard}>
-          <p className={styles.kicker}>Indian Ocean inspired digital craft</p>
-          <h1>I build modern web products and teach Power BI the practical way</h1>
+          <p className={styles.kicker}>Senior Full-Stack Engineer | {siteConfig.availability}</p>
+          <h1>{siteConfig.name}</h1>
           <p className={styles.heroLead}>
-            I am an experienced fullstack developer with 5+ years of
-            experience, and I can help you learn how to work with Power BI
-            effectively so your data leads to clear, measurable decisions.
+            Senior Full-Stack Engineer with 5+ years of commercial experience
+            building production-grade React, TypeScript, Node.js, and Power BI
+            solutions. I help teams work with data effectively and turn metrics
+            into clear decisions.
           </p>
           <div className={styles.actions}>
             <a className={styles.primaryButton} href="#contacts">
-              Discuss a project
+              Contact me
             </a>
             <a className={styles.secondaryButton} href="#about">
-              Learn more about me
+              View profile
             </a>
           </div>
         </article>
@@ -176,27 +189,27 @@ export default function Home() {
 
       <section className={styles.section} id="about">
         <div className={styles.sectionHeading}>
-          <p>About Me</p>
-          <h2>I align technology, analytics, and business goals into one system</h2>
+          <p>Profile</p>
+          <h2>Production-focused engineering for web products and analytics</h2>
         </div>
         <div className={styles.aboutGrid}>
           <article className={styles.contentCard}>
             <p>
-              I work at the intersection of engineering and analytics: building
-              reliable interfaces, shaping architecture, automating reporting,
-              and helping teams make decisions faster.
+              Strong background in enterprise analytics platforms, front-end
+              performance optimization, and complex data-driven interfaces.
             </p>
             <p>
-              I lead projects from idea to launch with a strong focus on
-              performance, scalability, SEO, and long-term maintainability.
+              Hands-on experience with AI-powered voice systems, accessibility
+              standards (WCAG), and large-scale financial domain products.
             </p>
+            <p>English: {siteConfig.englishLevel}.</p>
           </article>
           <article className={styles.contentCard}>
-            <p className={styles.listTitle}>What you get:</p>
+            <p className={styles.listTitle}>Key Skills:</p>
             <ul className={styles.benefits}>
-              <li>A clear process from first call to final outcome.</li>
-              <li>Hands-on Power BI training with your real data.</li>
-              <li>Practical decisions that improve efficiency and KPI clarity.</li>
+              {keySkills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
             </ul>
           </article>
         </div>
@@ -205,7 +218,7 @@ export default function Home() {
       <section className={styles.section} id="expertise">
         <div className={styles.sectionHeading}>
           <p>Expertise</p>
-          <h2>Services that strengthen your product and your team</h2>
+          <h2>Core directions where I can support your team</h2>
         </div>
         <div className={styles.serviceGrid}>
           {services.map((service) => (
@@ -220,7 +233,7 @@ export default function Home() {
       <section className={styles.section} id="contacts">
         <div className={styles.sectionHeading}>
           <p>Contacts</p>
-          <h2>Reach out and let&apos;s start building your next result</h2>
+          <h2>Let&apos;s connect for your next product or analytics initiative</h2>
         </div>
         <div className={styles.contactsGrid}>
           {contacts.map((contact) => (
@@ -244,7 +257,7 @@ export default function Home() {
       </section>
 
       <footer className={styles.footer}>
-        © {new Date().getFullYear()} {siteConfig.name}. Fullstack & Power BI.
+        © {new Date().getFullYear()} {siteConfig.name}. Senior Full-Stack Engineer.
       </footer>
     </main>
   );
