@@ -211,6 +211,38 @@
   margin-bottom: 18px;
 }
 
+.heroHeadline {
+  font-size: clamp(1.95rem, 4.2vw, 3.2rem) !important;
+  line-height: 1.06 !important;
+  max-width: 24ch !important;
+  margin-bottom: 10px !important;
+}
+
+.heroByline {
+  color: #d4f8ff;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+
+.pulseDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: #7fffb6;
+  box-shadow: 0 0 0 0 rgba(127, 255, 182, 0.7);
+  animation: pulse 2.2s ease-out infinite;
+  vertical-align: middle;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(127, 255, 182, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(127, 255, 182, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(127, 255, 182, 0); }
+}
+
 .heroLead {
   max-width: 58ch;
   color: var(--text-muted);
@@ -733,6 +765,353 @@
   60%,
   100% {
     transform: translateX(130%);
+  }
+}
+
+/* ---------- Logos strip ---------- */
+.logosSection {
+  margin-top: clamp(36px, 5vw, 60px);
+}
+
+.logosLabel {
+  text-align: center;
+  color: #d4f8ff;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.logosStrip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 4vw, 48px);
+  padding: 18px 22px;
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+}
+
+.logoItem {
+  height: 34px;
+  width: auto;
+  filter: grayscale(1) brightness(1.8) opacity(0.82);
+  transition: filter 240ms ease, transform 240ms ease;
+}
+
+.logoItem:hover {
+  filter: grayscale(0) brightness(1) opacity(1);
+  transform: translateY(-2px);
+}
+
+/* ---------- Productized offers ---------- */
+.offersGrid {
+  margin-top: 18px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.offerCard {
+  position: relative;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 28px 60px rgba(5, 41, 66, 0.3);
+  transition: 260ms ease;
+}
+
+.offerCard:hover {
+  border-color: rgba(255, 206, 184, 0.7);
+}
+
+.offerDuration {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 206, 184, 0.6);
+  background: rgba(255, 139, 111, 0.18);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.offerCard h3 {
+  font-family: var(--font-heading), serif;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.offerCard p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.offerList {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.offerList li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.offerList li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ffb17c;
+  font-weight: 700;
+}
+
+.offerCta {
+  margin-top: auto;
+  padding-top: 8px;
+  font-weight: 600;
+  color: #ffd0a7;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.offerCta:hover {
+  color: #fff4e4;
+  transform: translateX(3px);
+}
+
+/* ---------- Case studies ---------- */
+.caseGrid {
+  margin-top: 18px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.caseCard {
+  padding: 28px;
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 28px 60px rgba(5, 41, 66, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.caseIndustry {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #d4f8ff;
+}
+
+.caseCard h3 {
+  font-family: var(--font-heading), serif;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.caseMetrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(220, 247, 255, 0.18);
+  border-bottom: 1px solid rgba(220, 247, 255, 0.18);
+}
+
+.caseMetric {
+  display: flex;
+  flex-direction: column;
+}
+
+.caseMetric strong {
+  font-family: var(--font-heading), serif;
+  font-size: 1.6rem;
+  color: #ffd0a7;
+}
+
+.caseMetric span {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.caseBody {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.caseBody dt {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #d4f8ff;
+}
+
+.caseBody dd {
+  margin: 0 0 6px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ---------- Testimonials ---------- */
+.testimonialsGrid {
+  margin-top: 18px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.testimonialCard {
+  padding: 24px;
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 28px 60px rgba(5, 41, 66, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.testimonialQuote {
+  color: #f4fbff;
+  line-height: 1.55;
+  font-size: 1rem;
+}
+
+.testimonialMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testimonialMeta strong {
+  color: #fff4e4;
+}
+
+.testimonialMeta span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Comparison table ---------- */
+.comparisonWrap {
+  margin-top: 18px;
+  overflow-x: auto;
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  min-width: 640px;
+}
+
+.comparisonTable th,
+.comparisonTable td {
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(220, 247, 255, 0.14);
+  vertical-align: top;
+}
+
+.comparisonTable thead th {
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d4f8ff;
+  background: rgba(8, 52, 76, 0.35);
+}
+
+.comparisonTable tbody th {
+  font-weight: 600;
+  color: #fff4e4;
+}
+
+.comparisonTable td {
+  color: var(--text-muted);
+}
+
+.comparisonTable .meCol {
+  background: rgba(255, 139, 111, 0.12);
+  color: #fff4e4;
+  font-weight: 500;
+}
+
+.comparisonTable tbody tr:last-child th,
+.comparisonTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.formField select {
+  font: inherit;
+  color: var(--text-primary);
+  text-transform: none;
+  letter-spacing: normal;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(220, 247, 255, 0.32);
+  background: rgba(8, 52, 76, 0.5);
+  outline: none;
+  transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #ffd0a7 50%),
+    linear-gradient(135deg, #ffd0a7 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 36px;
+}
+
+.formField select:focus {
+  border-color: rgba(255, 206, 184, 0.82);
+  background-color: rgba(12, 72, 104, 0.7);
+  box-shadow: 0 0 0 4px rgba(255, 165, 124, 0.18);
+}
+
+.formField select option {
+  color: #08334c;
+  background: #f6fbff;
+}
+
+@media (max-width: 980px) {
+  .offersGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .testimonialsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .offersGrid,
+  .caseGrid,
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
   }
 }
 

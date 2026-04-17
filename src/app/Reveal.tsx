@@ -18,10 +18,6 @@ export function Reveal({ children, delay = 0, as = "div", className, id }: Props
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

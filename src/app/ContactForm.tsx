@@ -7,6 +7,29 @@ type Status = "idle" | "sending" | "sent" | "error";
 
 const ENDPOINT = "https://formsubmit.co/ajax/dimakurgan123789@gmail.com";
 
+const projectTypes = [
+  "Power BI Performance Audit",
+  "React + Power BI Embed Sprint",
+  "Dashboard Rescue",
+  "Custom full-stack build",
+  "Not sure yet — let's talk",
+];
+
+const budgetRanges = [
+  "Under $5k",
+  "$5k–$15k",
+  "$15k–$40k",
+  "$40k+",
+  "Ongoing monthly retainer",
+];
+
+const timelines = [
+  "ASAP (this month)",
+  "Within 4–6 weeks",
+  "Next quarter",
+  "Flexible / exploring",
+];
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -16,7 +39,7 @@ export function ContactForm() {
     const form = event.currentTarget;
     const data = new FormData(form);
 
-    if (data.get("company")) {
+    if (data.get("company_hp")) {
       setStatus("sent");
       form.reset();
       return;
@@ -35,8 +58,12 @@ export function ContactForm() {
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email"),
+          company: data.get("company"),
+          project_type: data.get("project_type"),
+          budget: data.get("budget"),
+          timeline: data.get("timeline"),
           message: data.get("message"),
-          _subject: "New inquiry from portfolio site",
+          _subject: `Portfolio inquiry — ${data.get("project_type") || "general"}`,
           _template: "table",
           _captcha: "false",
         }),
@@ -80,7 +107,7 @@ export function ContactForm() {
           />
         </label>
         <label className={styles.formField}>
-          <span>Email</span>
+          <span>Work email</span>
           <input
             name="email"
             type="email"
@@ -90,18 +117,70 @@ export function ContactForm() {
           />
         </label>
       </div>
+      <div className={styles.formRow}>
+        <label className={styles.formField}>
+          <span>Company</span>
+          <input
+            name="company"
+            type="text"
+            autoComplete="organization"
+            placeholder="Acme Analytics"
+          />
+        </label>
+        <label className={styles.formField}>
+          <span>Project type</span>
+          <select name="project_type" defaultValue="" required>
+            <option value="" disabled>
+              Select one…
+            </option>
+            {projectTypes.map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div className={styles.formRow}>
+        <label className={styles.formField}>
+          <span>Budget range</span>
+          <select name="budget" defaultValue="">
+            <option value="" disabled>
+              Select one…
+            </option>
+            {budgetRanges.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={styles.formField}>
+          <span>Timeline</span>
+          <select name="timeline" defaultValue="">
+            <option value="" disabled>
+              Select one…
+            </option>
+            {timelines.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
       <label className={styles.formField}>
-        <span>Message</span>
+        <span>One-line goal</span>
         <textarea
           name="message"
-          rows={5}
+          rows={4}
           required
-          placeholder="Tell me about your project, stack, and timeline."
+          placeholder="e.g. Replace our 14-second exec dashboard with something finance actually opens on Monday."
         />
       </label>
       <input
         type="text"
-        name="company"
+        name="company_hp"
         tabIndex={-1}
         autoComplete="off"
         className={styles.honeypot}
@@ -113,7 +192,7 @@ export function ContactForm() {
           className={styles.primaryButton}
           disabled={status === "sending"}
         >
-          {status === "sending" ? "Sending…" : "Send message"}
+          {status === "sending" ? "Sending…" : "Send project brief"}
         </button>
         <p
           className={styles.formStatus}
@@ -121,10 +200,10 @@ export function ContactForm() {
           role="status"
           aria-live="polite"
         >
-          {status === "sent" && "Thanks — your message is on its way."}
+          {status === "sent" && "Thanks — brief received. Reply within 1–2 business days."}
           {status === "error" &&
             `Could not send right now${errorMessage ? ` (${errorMessage})` : ""}. Please email directly.`}
-          {status === "idle" && "Direct reply within 1–2 business days."}
+          {status === "idle" && "No spam. Brief used only to scope the call."}
           {status === "sending" && "Delivering to inbox…"}
         </p>
       </div>

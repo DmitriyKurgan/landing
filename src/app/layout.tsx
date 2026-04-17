@@ -18,10 +18,14 @@ const bodyFont = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: `${siteConfig.name} | ${siteConfig.role}`,
+    default: `${siteConfig.name} — React + Power BI for US teams`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  other: {
+    "og:image:width": "1200",
+    "og:image:height": "630",
+  },
   applicationName: `${siteConfig.name} Portfolio`,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
