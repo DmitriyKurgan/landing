@@ -11,5 +11,5 @@ export const siteConfig = {
   location: "Kyiv, Ukraine",
   availability: "Remote US",
   englishLevel: "Upper-Intermediate (B2+)",
-  linkedin: "https://www.linkedin.com/in/dmytro-kurhan-40ab4191/",
+  linkedin: "https://www.linkedin.com/in/dmytro-kurhan-408ab4191/",
 } as const;

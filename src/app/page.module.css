@@ -478,13 +478,234 @@
   }
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 780ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 780ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.revealVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heroReveal {
+  transform: translateY(36px) scale(0.985);
+}
+
+.heroReveal.revealVisible {
+  transform: translateY(0) scale(1);
+}
+
+.tilt {
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
+  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+  will-change: transform;
+}
+
+.tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    480px circle at var(--tilt-mx, 50%) var(--tilt-my, 50%),
+    rgba(255, 210, 160, 0.18),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.tilt:hover::after {
+  opacity: 1;
+}
+
+.highlightCard,
+.contentCard,
+.serviceCard,
+.contactCard {
+  position: relative;
+  overflow: hidden;
+}
+
+.gradientText {
+  background: linear-gradient(110deg, #fff4e4 0%, #ffc79a 38%, #9be9ff 72%, #fff4e4 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmerText 9s linear infinite;
+}
+
+.primaryButton {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.buttonShine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.55) 48%,
+    transparent 76%
+  );
+  transform: translateX(-110%);
+  animation: shine 3.8s ease-in-out 1.2s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.formWrap {
+  margin-top: 26px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 28px 60px rgba(5, 41, 66, 0.3);
+}
+
+.formHeading h3 {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  margin-bottom: 6px;
+}
+
+.formHeading p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+}
+
+.contactForm {
+  display: grid;
+  gap: 14px;
+}
+
+.formRow {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.formField {
+  display: grid;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #d4f8ff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.formField input,
+.formField textarea {
+  font: inherit;
+  color: var(--text-primary);
+  text-transform: none;
+  letter-spacing: normal;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(220, 247, 255, 0.32);
+  background: rgba(8, 52, 76, 0.5);
+  outline: none;
+  transition: border-color 200ms ease, background 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  resize: vertical;
+}
+
+.formField textarea {
+  min-height: 120px;
+}
+
+.formField input::placeholder,
+.formField textarea::placeholder {
+  color: rgba(220, 247, 255, 0.48);
+}
+
+.formField input:focus,
+.formField textarea:focus {
+  border-color: rgba(255, 206, 184, 0.82);
+  background: rgba(12, 72, 104, 0.7);
+  box-shadow: 0 0 0 4px rgba(255, 165, 124, 0.18);
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+}
+
+.formFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.formFooter .primaryButton {
+  border: none;
+  cursor: pointer;
+}
+
+.formFooter .primaryButton:disabled {
+  opacity: 0.65;
+  cursor: progress;
+  transform: none;
+}
+
+.formStatus {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: color 200ms ease;
+}
+
+.formStatus[data-state="sent"] {
+  color: #b8ffd0;
+}
+
+.formStatus[data-state="error"] {
+  color: #ffc2b6;
+}
+
+@media (max-width: 640px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lightRay,
   .bubble,
   .wavePrimary,
   .waveSecondary,
-  .highlightCard {
+  .highlightCard,
+  .gradientText,
+  .buttonShine {
     animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .tilt {
+    transform: none !important;
+    transition: none;
   }
 
   .primaryButton,
@@ -493,6 +714,25 @@
   .contactCard,
   .nav a {
     transition: none;
+  }
+}
+
+@keyframes shimmerText {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 220% 0%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-110%);
+  }
+  60%,
+  100% {
+    transform: translateX(130%);
   }
 }
 
